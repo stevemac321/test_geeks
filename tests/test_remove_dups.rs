@@ -9,4 +9,5 @@ fn test_remove_duplicates() {
     let mut nums = vec![0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
     assert_eq!(test_geeks::remove_dups::remove_duplicates(&mut nums), 5);
     assert_eq!(&nums[..5], &[0, 1, 2, 3, 4]);
+    assert_eq!(1,1);
 }
