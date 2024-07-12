@@ -1,4 +1,5 @@
 extern crate test_geeks;
+use test_geeks::rotate_grid::rotate_grid;
 
 #[test]
 fn test_rotate_grid() {
@@ -8,7 +9,7 @@ fn test_rotate_grid() {
         [9, 10, 11, 12],
         [13, 14, 15, 16],
     ];
-    test_geeks::rotate_grid::rotate_grid(&mut grid);
+    rotate_grid(&mut grid);
     assert_eq!(grid, [
         [13, 9, 5, 1],
         [14, 10, 6, 2],
