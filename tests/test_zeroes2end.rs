@@ -21,4 +21,12 @@ fn test_zeroes2end()
             assert_eq!(arr[i], 0);
         }
     }
+    {
+        let mut arr = [0,0,0];
+        let newlen = zeroes2end(&mut arr);
+        assert_eq!(newlen, 0);
+        for i in newlen..arr.len() {
+            assert_eq!(arr[i], 0);
+        }
+    }
 }
