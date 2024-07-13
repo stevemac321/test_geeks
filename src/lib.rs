@@ -5,3 +5,4 @@ pub mod max_index_span;
 pub mod zeroes2end;
 pub mod rect_intersect;
 pub mod sum_product;
+pub mod sort_array;
