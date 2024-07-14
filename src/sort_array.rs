@@ -27,6 +27,33 @@ pub fn bubble_sort<T: PartialOrd + PartialEq>(arr: &mut [T]) {
     }
 }
 
+fn partition<T: PartialOrd + PartialEq>(arr: &mut [T], low: usize, high: usize) ->usize{
+    let pivot = high;
+    let mut left = low;
+
+    for scanner in low..high {
+        if arr[scanner] <= arr[pivot] {
+            arr.swap(left,scanner);
+            left += 1;
+        }
+    }
+    arr.swap(left, high);
+    left
+}
+
+fn inner_qsort<T: PartialOrd + PartialEq>(arr: &mut [T], low: usize, high: usize) {
+    if low < high {
+        let pivot = partition(arr, low, high);
+        if pivot > 0 {
+            inner_qsort(arr, low, pivot - 1); // Corrected to pivot - 1
+        }
+        inner_qsort(arr, pivot + 1, high); // Corrected to pivot + 1
+    }
+}
+pub fn quick_sort<T: PartialOrd + PartialEq>(arr: &mut [T]) {
+    inner_qsort(arr, 0, arr.len() - 1);
+}
+
 /*
 Insertion Sort
 arr: [6, 8, 10, 1, 9]
@@ -86,5 +113,52 @@ datasets as its average and worst-case complexity are both \(O(n^2)\).
 ### Efficiency:
 - **Best Case**: \(O(n)\) when the array is already sorted.
 - **Average and Worst Case**: \(O(n^2)\) due to the nested loops required for comparisons and swaps.
+---------------------------------------------------------------------
+Quick Sort
+#include <iostream>
+template <typename T, const size_t N> constexpr size_t __countof(T(&)[N]) {
+    return N;
+}
+
+void swap(int a[], int left, int right) {
+    int temp = a[right];
+    a[right] = a[left];
+    a[left] = temp;
+}
+
+int partition(int a[], int low, int high) {
+    int pivot = a[high];
+    int left = low;
+
+    for (int scanner = low; scanner < high; scanner++) {
+        if (a[scanner] < pivot) {
+            swap(a, left, scanner);
+            left++;
+        }
+    }
+    // Swap the pivot to its correct position
+    swap(a, left, high);
+    return left;
+}
+
+void internal_qsort(int a[], int low, int high) {
+    if (low < high) {
+        int pivot = partition(a, low, high);
+        internal_qsort(a, low, pivot - 1); // Recursively sort left partition
+        internal_qsort(a, pivot + 1, high); // Recursively sort right partition
+    }
+}
+
+void qsort(int a[], int len) {
+    internal_qsort(a, 0, len - 1);
+}
+
+int main() {
+    int a[] = { 33, 77, 1, 8, 0, 3, 5, 1, 79, 33, 9 };
+    size_t len = __countof(a);
+    qsort(a, len);
+    for (auto& i : a)
+        std::cout << i << "\n";
+}
 
 */

@@ -43,3 +43,11 @@ fn test_insertion_bubble_strings() {
     bubble_sort(&mut arr);
     assert_eq!(arr, ["apple", "banana", "cherry", "date"]);
 }
+
+use test_geeks::sort_array::quick_sort;
+#[test]
+fn test_quick_sort_integers() {
+    let mut arr = [6, 8, 10, 1, 9];
+    quick_sort(&mut arr);
+    assert_eq!(arr, [1, 6, 8, 9, 10]);
+}
