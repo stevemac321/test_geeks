@@ -18,11 +18,11 @@ impl<T: PartialOrd + PartialEq + Debug> BNode<T> {
     }
 }
 
-pub struct BinTree<T: PartialOrd + PartialEq + Debug> {
+pub struct BinTree<T: PartialOrd + PartialEq + Debug + Clone> {
     root: Option<Box<BNode<T>>>,
 }
 
-impl<T: PartialOrd + PartialEq + Debug> BinTree<T> {
+impl<T: PartialOrd + PartialEq + Debug + Clone> BinTree<T> {
     pub fn new() -> Self {
         BinTree {
             root: None,
@@ -58,6 +58,19 @@ impl<T: PartialOrd + PartialEq + Debug> BinTree<T> {
             self.inner_print(&n.left);
             println!("{:?}", n.data);
             self.inner_print(&n.right);
+        }
+    }
+    pub fn in_order(&self) -> Vec<T> {
+        let mut result = Vec::new();
+        self.inner_in_order(&self.root, &mut result);
+        result
+    }
+
+    fn inner_in_order(&self, node: &Option<Box<BNode<T>>>, result: &mut Vec<T>) {
+        if let Some(ref n) = node {
+            self.inner_in_order(&n.left, result);
+            result.push(n.data.clone());
+            self.inner_in_order(&n.right, result);
         }
     }
 }
