@@ -7,3 +7,4 @@ pub mod rect_intersect;
 pub mod sum_product;
 pub mod sort_array;
 pub mod binary_tree;
+pub mod non_repeating;
