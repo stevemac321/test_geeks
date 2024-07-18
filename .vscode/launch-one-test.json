@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug Tests",
+        "type": "lldb",
+        "request": "launch",
+        "program": "${workspaceFolder}/target/debug/${workspaceFolderBasename}-d3f91b573c23f637",  run cargo test --no-run to get a list of "guids"
+        "args": [],
+        "cwd": "${workspaceFolder}",
+        "sourceLanguages": ["rust"],
+        "preLaunchTask": "cargo test --no-run",
+        "postDebugTask": "clean up test artifacts"
+      },
+      {
+        "name": "Debug",
+        "type": "lldb",
+        "request": "launch",
+        "cargo": {
+          "args": [
+            "test",
+            "--no-run",
+            "--lib"
+          ]
+        },
+        "args": [],
+        "cwd": "${workspaceFolder}",
+        "stopOnEntry": false
+      }
+    ]
+  }
+  
