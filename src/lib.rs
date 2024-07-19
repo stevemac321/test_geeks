@@ -9,3 +9,4 @@ pub mod sort_array;
 pub mod binary_tree;
 pub mod non_repeating;
 pub mod jumping_numbers;
+pub mod interleaving;
