@@ -1,5 +1,6 @@
 extern crate test_geeks;
 use test_geeks::interleaving::interleaving;
+
 #[test]
 fn test_interleaving() {
     // Test case where `c` is not an interleaving of `a` and `b`

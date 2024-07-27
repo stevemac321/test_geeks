@@ -10,3 +10,4 @@ pub mod binary_tree;
 pub mod non_repeating;
 pub mod jumping_numbers;
 pub mod interleaving;
+pub mod equal2subarray;
