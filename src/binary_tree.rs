@@ -1,4 +1,5 @@
 use std::fmt::Debug;
+use std::cmp::min;
 
 pub struct BNode<T: PartialOrd + PartialEq + Debug> {
     data: T,
@@ -72,6 +73,28 @@ impl<T: PartialOrd + PartialEq + Debug + Clone> BinTree<T> {
             result.push(n.data.clone());
             self.inner_in_order(&n.right, result);
         }
+    }
+    
+    fn inner_min_depth(&self, node: &Option<Box<BNode<T>>>) -> i32 {
+        let node = node.as_ref().unwrap();
+        
+        if node.left.is_none() && node.right.is_none() {
+            return 1;
+        }
+        if node.left.is_none() {
+            return self.inner_min_depth(&node.right) + 1;
+        }
+        if node.right.is_none() {
+            return self.inner_min_depth(&node.left) + 1;
+        }
+        return min(self.inner_min_depth(&node.left), self.inner_min_depth(&node.right)) + 1;
+    }
+    pub fn min_depth(&self) ->i32 {
+        if self.root.is_none() {
+            return 0;
+        }
+        
+        return self.inner_min_depth(&self.root);
     }
 }
 
