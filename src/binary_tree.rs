@@ -76,25 +76,28 @@ impl<T: PartialOrd + PartialEq + Debug + Clone> BinTree<T> {
     }
     
     fn inner_min_depth(&self, node: &Option<Box<BNode<T>>>) -> i32 {
-        let node = node.as_ref().unwrap();
-        
-        if node.left.is_none() && node.right.is_none() {
-            return 1;
+        if let Some(ref n) = node {
+            if n.left.is_none() && n.right.is_none() {
+                return 1;
+            }
+            if n.left.is_none() {
+                return self.inner_min_depth(&n.right) + 1;
+            }
+            if n.right.is_none() {
+                return self.inner_min_depth(&n.left) + 1;
+            }
+            return min(self.inner_min_depth(&n.left), self.inner_min_depth(&n.right)) + 1;
         }
-        if node.left.is_none() {
-            return self.inner_min_depth(&node.right) + 1;
-        }
-        if node.right.is_none() {
-            return self.inner_min_depth(&node.left) + 1;
-        }
-        return min(self.inner_min_depth(&node.left), self.inner_min_depth(&node.right)) + 1;
+        0
     }
+    
     pub fn min_depth(&self) ->i32 {
         if self.root.is_none() {
             return 0;
         }
         
-        return self.inner_min_depth(&self.root);
+        let depth =  self.inner_min_depth(&self.root);
+        return depth;
     }
 }
 

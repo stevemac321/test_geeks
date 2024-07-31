@@ -41,6 +41,8 @@ fn test_binary_tree_mindepth2()
 }
 
 /*
+NOTE: I am changing this to count the root
+
 Minimum Depth of a Binary Tree
 Difficulty: EasyAccuracy: 42.09%Submissions: 71K+Points: 2
 Given a binary tree, find its minimum depth.
@@ -54,7 +56,7 @@ Input:
         /
        4           
 
-Output: 2
+Output: 2  (for me its 3)
 
 Explanation:
 Minimum depth is between nodes 1 and 2 since
